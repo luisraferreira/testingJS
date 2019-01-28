@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs</title>
+</head>
+<body>
+
+  <div class="container--tabs">
+  	<section class="row">
+  		<ul class="nav nav-tabs">
+  			<li class="active"><a href="#tab-1">Tab 1</a></li>
+  			<li class=""><a href="#tab-2">Tab 2</a></li>
+  			<li class=""><a href="#tab-3">Tab 3</a></li>
+  		</ul>
+  		<div class="tab-content">
+  			<div id="tab-1" class="tab-pane active">
+  				<span class="glyphicon glyphicon-leaf glyphicon--home--feature two columns text-center"></span>
+  				<span class="col-md-10">
+  					<h3>Feature 1</h3>
+  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  				</span>
+  			</div>
+  			<div id="tab-2" class="tab-pane">
+  				<span class="glyphicon glyphicon-fire glyphicon--home--feature two columns text-center"></span>
+  				<span class="col-md-10">
+  					<h3>Feature 2</h3>
+  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  				</span>
+  			</div>
+  			<div id="tab-3" class="tab-pane">
+  				<span class="glyphicon glyphicon-tint glyphicon--home--feature two columns text-center"></span>
+  				<span class="col-md-10">
+  					<h3>Feature 3</h3>
+  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  				</span>
+  			</div>
+  		</div>
+  	</section>
+  </div>
+
+  <script src="scripts/tabs.js" type="text/javascript"></script>
+</body>
+</html>
+<style>
+.container--tabs {
+  margin: 2rem;
+}
+.container--tabs .nav-tabs {
+  float: left;
+  width: 100%;
+  margin: 0;
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+}
+.container--tabs .nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+.container--tabs .nav-tabs > li > a {
+  float: left;
+  margin-right: 2px;
+  line-height: 1.42857143;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}
+.container--tabs .nav-tabs > li > a:hover {
+  border-color: #eee #eee #ddd;
+}
+.container--tabs .nav-tabs > li.active > a,
+.container--tabs .nav-tabs > li.active > a:hover,
+.container--tabs .nav-tabs > li.active > a:focus {
+  color: #555;
+  cursor: default;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+.container--tabs .tab-content {
+  float: left;
+  width: 100%;
+}
+.container--tabs .tab-content > .tab-pane {
+  display: none;
+}
+.container--tabs .tab-content > .tab-pane.active {
+  display: block;
+  padding: 2.5% 3.5%;
+  background-color: #efefef;
+}
+.container--tabs .tab-content > .active {
+  display: block;
+}
+</style>
