@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<body>
+  <div>
+    <form action="/action_page.php">
+      <div class="textField">
+        <label for="fname">Primeiro Nome</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <span class="errorMessage">Por favor introduza um valor correto</span>
+      </div>
+
+      <div class="textField">
+        <label for="lname">Último Nome</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <span class="errorMessage">Por favor introduza um valor correto</span>
+      </div>
+
+      <div class="textField">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email..">
+        <span class="errorMessage">Por favor introduza um valor correto</span>
+      </div>
+
+      <div class="textField">
+        <label for="phone">Primeiro Nome</label>
+        <input type="text" id="phone" name="phone" placeholder="Your phone..">
+        <span class="errorMessage">Por favor introduza um valor correto</span>
+      </div>
+
+      <a href="#" class="submitBtn">Submit</a>
+    </form>
+  </div>
+  <script src="scripts/forms.js" type="text/javascript"></script>
+</body>
+
+</html>
+
+<style media="screen">
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+
+  input{
+    width: 100%;
+  }
+
+   label {
+    margin-bottom: 4px;
+  }
+
+  .textField label {
+    display: block;
+  }
+
+  .errorMessage {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+    opacity: 0;
+  }
+
+  .submitBtn {
+    -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+    box-shadow: inset 0px 1px 0px 0px #fce2c1;
+    background-color: #e69b40;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Verdana;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 15px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #cc9f52;
+  }
+
+  .submitBtn:hover {
+    background-color: #c96f00;
+  }
+
+  .submitBtn:active {
+    position: relative;
+    top: 1px;
+  }
+</style>
