@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabs</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">
+</script>
 </head>
 <body>
-
   <div class="container--tabs">
   	<section class="row">
   		<ul class="nav nav-tabs">
-  			<li class="active"><a href="#tab-1">Tab 1</a></li>
-  			<li class=""><a href="#tab-2">Tab 2</a></li>
-  			<li class=""><a href="#tab-3">Tab 3</a></li>
+  			<li class="active"><a href="#tab-1" data-id="tab-1">Tab 1</a></li>
+  			<li class=""><a href="#tab-2" data-id="tab-2">Tab 2</a></li>
+  			<li class=""><a href="#tab-3" data-id="tab-3">Tab 3</a></li>
   		</ul>
   		<div class="tab-content">
-  			<div id="tab-1" class="tab-pane active">
+  			<div data-id="tab-1" class="tab-pane active">
   				<span class="glyphicon glyphicon-leaf glyphicon--home--feature two columns text-center"></span>
   				<span class="col-md-10">
   					<h3>Feature 1</h3>
