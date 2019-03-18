@@ -1,5 +1,6 @@
 getUsers();
 
+
 function getUsers() {
   $.ajax({
     type: 'GET',
@@ -19,11 +20,27 @@ function getUsers() {
 
                             <button class="deleteUser">Delete User</button>
                           </div>`;
-        console.log(name);
         $('.usersList').append(template);
       });
 
-      //$('.deleteUser').on('click', userDelete);
+      $('.deleteUser').on('click', userDelete);
+    },
+    error: function(xhr, type, exception) {
+      // if ajax fails display error alert
+      alert("ajax error response type " + type);
+    }
+  });
+}
+
+function userDelete(el) {
+var targetId = el.currentTarget.parentElement.dataset.id;
+var targetParent = el.currentTarget.parentElement;
+  $.ajax({
+    type: 'DELETE',
+    url: 'https://jsonplaceholder.typicode.com/users/' + targetId,
+    success: function(data) {
+      console.log('oi');
+      $(targetParent).remove();
     },
     error: function(xhr, type, exception) {
       // if ajax fails display error alert
