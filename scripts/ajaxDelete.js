@@ -1,6 +1,5 @@
 getUsers();
 
-
 function getUsers() {
   $.ajax({
     type: 'GET',

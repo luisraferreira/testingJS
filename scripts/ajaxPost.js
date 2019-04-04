@@ -15,14 +15,21 @@ function submitForm(e) {
     emailValue = inputEmail.val(),
     messageValue = inputMessage.val(),
     regexEmail = '[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}';
+      // $.ajax({
+      //   url: "https://reqres.in/api/users",
+      //   type: "POST",
+      //   data: {
+      //     name: nameValue,
+      //     email: emailValue,
+      //     message: messageValue
+      //   },
+      //   success: function(response) {
+      //     console.log(response);
+      //   }
+      // });
       $.ajax({
-        url: "https://reqres.in/api/users",
+        url: "https://reqres.in/api/users?name=" + nameValue + "&email=" + emailValue + "&message=" + messageValue,
         type: "POST",
-        data: {
-          name: nameValue,
-          email: emailValue,
-          message: messageValue
-        },
         success: function(response) {
           console.log(response);
         }

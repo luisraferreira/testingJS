@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js">
+  </script>
+</head>
+
+<body>
+
+  <div>
+    <input type="text" name="Nome" placeholder="Nome">
+    <input type="text" name="Descricao" placeholder="Descricao">
+
+    <input type="radio" value="0" name="feito">
+    <input type="radio" value="1" name="feito">
+
+    <button class="addTask">Adicionar</button>
+  </div>
+
+  <div class="wrapper"></div>
+  <script src="scripts/crud.js" type="text/javascript"></script>
+</body>
+
+<style media="screen">
+.modal {
+display: none;
+position: fixed;
+z-index: 10000000000000000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100vh;
+overflow: hidden;
+background-color: #fff; }
+
+/* Modal Content/Box */
+.modal-content .wrapper {
+height: 100%;
+margin: 0 auto; }
+.modal-content .wrapper .perguntas {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#af64c7), color-stop(98%, #a2d4ed));
+  background-image: -o-linear-gradient(top, #af64c7, #a2d4ed 98%);
+  background-image: linear-gradient(to bottom, #af64c7, #a2d4ed 98%);
+  /*background-image: linear-gradient(to top, #96dc9c, rgba(150, 220, 156, 0.35) 65%);*/
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  width: calc(100% - 200px);
+  float: right;
+  padding: 100px 150px; }
+  @media screen and (max-width: 767px) {
+    .modal-content .wrapper .perguntas {
+      width: 100%;
+      padding: 120px 50px; } }
+  .modal-content .wrapper .perguntas h4 {
+    font-family: 'Speedee_Bd', Arial, sans-serif;
+    font-size: calc(32px + (80 - 32) * ((100vw - 320px) / (1920 - 320)));
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.06;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    margin-bottom: 65px; }
+  .modal-content .wrapper .perguntas label {
+    font-family: 'Speedee_Rg', Arial, sans-serif;
+    font-size: calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)));
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 3.23;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: relative;
+    display: block;
+    margin-left: 50px; }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .perguntas label {
+        line-height: normal; } }
+    .modal-content .wrapper .perguntas label:last-of-type {
+      margin-top: 30px; }
+    .modal-content .wrapper .perguntas label input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer; }
+    .modal-content .wrapper .perguntas label .checkmark {
+      position: absolute;
+      top: 50%;
+      left: -60px;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      display: block; }
+      .modal-content .wrapper .perguntas label .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 50%;
+        height: 38px;
+        left: 35%;
+        background-image: url(../../../images/Campanhas/copos2019/select.png);
+        background-repeat: no-repeat;
+        width: 37px;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); }
+    .modal-content .wrapper .perguntas label input:checked ~ .checkmark:after {
+      display: block; }
+  .modal-content .wrapper .perguntas .buttonsNav {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 15%; }
+    .modal-content .wrapper .perguntas .buttonsNav button {
+      margin: 0; }
+      .modal-content .wrapper .perguntas .buttonsNav button:first-of-type {
+        margin-right: 35px; }
+      .modal-content .wrapper .perguntas .buttonsNav button .action-button__text {
+        font-family: "Speedee_Bd", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.31;
+        letter-spacing: 2.1px;
+        text-align: center;
+        color: #ffffff;
+        text-transform: uppercase; }
+        @media screen and (max-width: 767px) {
+          .modal-content .wrapper .perguntas .buttonsNav button .action-button__text {
+            display: none; } }
+  .modal-content .wrapper .perguntas button.left:hover .action-button__text {
+    -webkit-transform: translateX(-22px);
+    -ms-transform: translateX(-22px);
+    transform: translateX(-22px); }
+  .modal-content .wrapper .perguntas button.left .action-button__shapes {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg); }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .perguntas button.left .action-button__shapes {
+        -webkit-transform: rotateY(180deg) scale(0.6);
+        transform: rotateY(180deg) scale(0.6); } }
+  .modal-content .wrapper .perguntas button.left .action-button__text {
+    margin-right: 0;
+    margin-left: 36px; }
+  .modal-content .wrapper .perguntas button {
+    color: #fff; }
+    .modal-content .wrapper .perguntas button .action-button__circle--base circle {
+      stroke: #fff; }
+    .modal-content .wrapper .perguntas button .action-button__rectangle {
+      background-color: #fff; }
+    .modal-content .wrapper .perguntas button .action-button__arrow polygon {
+      fill: #fff; }
+  .modal-content .wrapper .perguntas .pergunta-2, .modal-content .wrapper .perguntas .pergunta-3 {
+    display: none; }
+.modal-content .wrapper .respostasContainer {
+  position: relative; }
+  .modal-content .wrapper .respostasContainer h2 {
+    font-family: 'Speedee_Bd', Arial, sans-serif;
+    font-size: calc(40px + (160 - 40) * ((100vw - 320px) / (1920 - 320)));
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.48;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff; }
+  .modal-content .wrapper .respostasContainer h2, .modal-content .wrapper .respostasContainer .copoImg {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  .modal-content .wrapper .respostasContainer .copoImg {
+    max-width: 340px; }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .respostasContainer .copoImg {
+        max-width: 200px;
+        top: 35% !important;
+        left: 50% !important; } }
+    @media screen and (max-width: 500px) {
+      .modal-content .wrapper .respostasContainer .copoImg {
+        max-width: 115px; } }
+  .modal-content .wrapper .respostasContainer .layerBack {
+    display: block;
+    top: 30%;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .respostasContainer .layerBack {
+        width: 400px;
+        top: 30%;
+        left: 68%; } }
+  .modal-content .wrapper .respostasContainer .layerFront {
+    display: block;
+    top: 25%;
+    width: 60%;
+    position: absolute;
+    left: 45%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .respostasContainer .layerFront {
+        width: 600px;
+        top: 25%;
+        left: 39%; } }
+  .modal-content .wrapper .respostasContainer .textBottom {
+    position: absolute;
+    bottom: 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    float: right; }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .respostasContainer .textBottom {
+        display: block;
+        width: 80%; } }
+    .modal-content .wrapper .respostasContainer .textBottom button {
+      font-family: 'Speedee_Bd', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      text-transform: uppercase;
+      line-height: 1.31;
+      letter-spacing: 2.1px;
+      text-align: right;
+      color: #fff;
+      padding: 0;
+      margin: 0; }
+      @media screen and (max-width: 767px) {
+        .modal-content .wrapper .respostasContainer .textBottom button .shareColor {
+          float: right; } }
+      @media screen and (max-width: 767px) {
+        .modal-content .wrapper .respostasContainer .textBottom button {
+          margin-top: 20px; } }
+      .modal-content .wrapper .respostasContainer .textBottom button .action-button__circle--base circle {
+        stroke: #fff; }
+      .modal-content .wrapper .respostasContainer .textBottom button .action-button__rectangle {
+        background-color: #fff; }
+      .modal-content .wrapper .respostasContainer .textBottom button .action-button__arrow polygon {
+        fill: #fff; }
+  .modal-content .wrapper .respostasContainer .colorDescription {
+    max-width: 430px; }
+    .modal-content .wrapper .respostasContainer .colorDescription h6 {
+      font-family: 'Speedee_Bd', Arial, sans-serif;
+      font-size: calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)));
+      text-align: left;
+      margin: 6px 0; }
+    .modal-content .wrapper .respostasContainer .colorDescription p {
+      font-family: 'Speedee_Rg', Arial, sans-serif;
+      font-size: calc(18px + (26 - 18) * ((100vw - 320px) / (1920 - 320)));
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: left; }
+    .modal-content .wrapper .respostasContainer .colorDescription span {
+      font-family: 'Speedee_Rg', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.05;
+      letter-spacing: 0.4px;
+      text-align: left;
+      color: #ffffff;
+      display: block;
+      margin-top: 20px; }
+  .modal-content .wrapper .respostasContainer .verde, .modal-content .wrapper .respostasContainer .turquesa, .modal-content .wrapper .respostasContainer .rosa, .modal-content .wrapper .respostasContainer .azul, .modal-content .wrapper .respostasContainer .roxo, .modal-content .wrapper .respostasContainer .cinzento {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    width: calc(100% - 200px);
+    float: right;
+    padding: 100px 150px;
+    display: none; }
+    @media screen and (max-width: 767px) {
+      .modal-content .wrapper .respostasContainer .verde, .modal-content .wrapper .respostasContainer .turquesa, .modal-content .wrapper .respostasContainer .rosa, .modal-content .wrapper .respostasContainer .azul, .modal-content .wrapper .respostasContainer .roxo, .modal-content .wrapper .respostasContainer .cinzento {
+        width: 100%; } }
+  .modal-content .wrapper .respostasContainer .verde {
+    background: -webkit-gradient(linear, left bottom, left top, from(#96dc9c), color-stop(65%, rgba(150, 220, 156, 0.35)));
+    background: -o-linear-gradient(bottom, #96dc9c, rgba(150, 220, 156, 0.35) 65%);
+    background: linear-gradient(to top, #96dc9c, rgba(150, 220, 156, 0.35) 65%); }
+    .modal-content .wrapper .respostasContainer .verde h6, .modal-content .wrapper .respostasContainer .verde p {
+      color: #04b400; }
+  .modal-content .wrapper .respostasContainer .turquesa {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#6ce0dd), color-stop(65%, rgba(108, 224, 221, 0.35)));
+    background-image: -o-linear-gradient(bottom, #6ce0dd, rgba(108, 224, 221, 0.35) 65%);
+    background-image: linear-gradient(to top, #6ce0dd, rgba(108, 224, 221, 0.35) 65%); }
+    .modal-content .wrapper .respostasContainer .turquesa h6, .modal-content .wrapper .respostasContainer .turquesa p {
+      color: #02a19d; }
+  .modal-content .wrapper .respostasContainer .rosa {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#f0bdc6), color-stop(65%, rgba(240, 189, 198, 0.35)));
+    background-image: -o-linear-gradient(bottom, #f0bdc6, rgba(240, 189, 198, 0.35) 65%);
+    background-image: linear-gradient(to top, #f0bdc6, rgba(240, 189, 198, 0.35) 65%); }
+    .modal-content .wrapper .respostasContainer .rosa h6, .modal-content .wrapper .respostasContainer .rosa p {
+      color: #ff6681; }
+  .modal-content .wrapper .respostasContainer .azul {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#a2d4ed), color-stop(65%, rgba(162, 212, 237, 0.35)));
+    background-image: -o-linear-gradient(bottom, #a2d4ed, rgba(162, 212, 237, 0.35) 65%);
+    background-image: linear-gradient(to top, #a2d4ed, rgba(162, 212, 237, 0.35) 65%); }
+    .modal-content .wrapper .respostasContainer .azul h6, .modal-content .wrapper .respostasContainer .azul p {
+      color: #0781ce; }
+  .modal-content .wrapper .respostasContainer .roxo {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#cb7be5), color-stop(65%, rgba(203, 123, 229, 0.35)));
+    background-image: -o-linear-gradient(bottom, #cb7be5, rgba(203, 123, 229, 0.35) 65%);
+    background-image: linear-gradient(to top, #cb7be5, rgba(203, 123, 229, 0.35) 65%); }
+    .modal-content .wrapper .respostasContainer .roxo h6, .modal-content .wrapper .respostasContainer .roxo p {
+      color: #7f18a1; }
+  .modal-content .wrapper .respostasContainer .cinzento {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#99a0a7), color-stop(65%, rgba(153, 160, 167, 0.35)));
+    background-image: -o-linear-gradient(bottom, #99a0a7, rgba(153, 160, 167, 0.35) 65%);
+    background-image: linear-gradient(to top, #99a0a7, rgba(153, 160, 167, 0.35) 65%); }
+    .modal-content .wrapper .respostasContainer .cinzento h6, .modal-content .wrapper .respostasContainer .cinzento p {
+      color: #42474b; }
+
+.modal-content .close {
+position: absolute;
+right: 30px;
+TOP: 30px;
+height: 44px;
+width: 44px;
+cursor: pointer;
+background-repeat: no-repeat;
+background-image: url(../../../images/Campanhas/copos2019/close.png);
+/*span {
+          display: block;
+          border-left: 2px solid white;
+          height: 100%;
+          left: 32px;
+          position: absolute;
+
+
+          &:first-of-type {
+              transform: rotate(50deg);
+          }
+
+          &:last-of-type {
+              transform: rotate(-50deg);
+          }
+      }*/ }
+@media screen and (max-width: 767px) {
+  .modal-content .close {
+    right: 30px;
+    TOP: 80px;
+    -webkit-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5); } }
+
+</style>
+</html>
